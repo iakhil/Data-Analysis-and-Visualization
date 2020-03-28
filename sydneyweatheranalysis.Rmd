@@ -1,0 +1,96 @@
+
+library(dplyr)
+
+library(ggplot2)
+
+library('mosaic')
+
+#Loading data.
+
+sdata = read.csv('sydneyweather2.csv')
+
+
+#Plotting monthly mean temperatures of all months from the year 1859 to 2019.
+
+#Using qqplot from ggplot2 for plotting. 'geom = smooth' is used for smooth curve fitting.
+
+jan_plot <- qplot(years, sdata$jan, geom = 'smooth', span = 0.75, xlab = 'Year', ylab = 'Mean Temperature in January', lwd = 1)
+
+feb_plot <- qplot(years, sdata$feb, geom = 'smooth', span = 0.75, xlab = 'Year', ylab = 'Mean Temperature in February', lwd = 1)
+
+mar_plot <- qplot(years, sdata$mar, geom = 'smooth', span = 0.75, xlab = 'Year', ylab = 'Mean Temperature in March', lwd = 1)
+
+
+apr_plot <- qplot(years, sdata$apr, geom = 'smooth', span = 0.75, xlab = 'Year', ylab = 'Mean Temperature in April', lwd = 1)
+
+may_plot <- qplot(years, sdata$apr, geom = 'smooth', span = 0.75, xlab = 'Year', ylab = 'Mean Temperature in May', lwd = 1)
+
+
+jun_plot <- qplot(years, sdata$Jun, geom = 'smooth', span = 0.75, xlab = 'Year', ylab = 'Mean Temperature in June', lwd = 1)
+
+jul_plot <- qplot(years, sdata$Jul, geom = 'smooth', span = 0.75, xlab = 'Year', ylab = 'Mean Temperature in July', lwd = 1)
+
+
+
+aug_plot <- qplot(years, sdata$Aug, geom = 'smooth', span = 0.75, xlab = 'Year', ylab = 'Mean Temperature in August', lwd = 1)
+
+
+
+sep_plot <- qplot(years, sdata$Sep, geom = 'smooth', span = 0.75, xlab = 'Year', ylab = 'Mean Temperature in September', lwd = 1)
+
+
+oct_plot <- qplot(years, sdata$Oct, geom = 'smooth', span = 0.75, xlab = 'Year', ylab = 'Mean Temperature in October', lwd = 1)
+
+
+nov_plot <- qplot(years, sdata$Nov, geom = 'smooth', span = 0.75, xlab = 'Year', ylab = 'Mean Temperature in October', lwd = 1)
+
+
+dec_plot <- qplot(years, sdata$Dec, geom = 'smooth', span = 0.75, xlab = 'Year', ylab = 'Mean Temperature in December', col = 'red', lwd = 1)
+
+
+#Plotting the annual mean temperature of all the years.
+
+annual_plot <- qplot(years, sdata$Annual, geom = 'smooth', span = 0.75, xlab = 'Year', ylab = 'Mean Annual Temperature', lwd = 1)
+
+
+#Getting all the plots on a single page.
+
+qplot(years , jan, geom = 'smooth', span = 0.75, xlab = 'Year', ylab = 'Mean Temperature in Jan', col = 'green', lwd = 1.5)
+
+jul_plot <- qplot(years , jul, geom = 'smooth', span = 0.75, xlab = 'Year', ylab = 'Mean Temperature in Jul', col = 'green', lwd = 1.5)
+
+
+ggarrange(annual_plot, jan_plot, feb_plot, mar_plot, apr_plot, may_plot, jun_plot, jul_plot, aug_plot, sep_plot, oct_plot, nov_plot, dec_plot)
+
+
+
+ggarrange(annual_plot, jan_plot, feb_plot, mar_plot, apr_plot, may_plot, jun_plot, jul_plot, aug_plot, sep_plot, oct_plot, nov_plot, dec_plot)
+
+#Loading the dataset as a matrix.
+atemp = as.matrix(sdata)
+
+
+#Creating a heatmap. 
+
+heatmap(atemp)
+
+
+#Plotting a histogram of the annual mean temperatures.
+
+hist(sdata$'Annual', xlab = 'Mean Annual Temperature', col = 'green', border = 'red', lwd = 2)
+
+#Checking whether the set of mean annual temperature is a normal distribution using Shapiro-Wilsk test. 
+
+shapiro.test(sdata$'Annual')
+
+#As the p-value is less than 0.05, the distribution is not normal.
+
+
+
+
+
+
+
+
+
+
